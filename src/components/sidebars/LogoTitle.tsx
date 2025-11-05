@@ -15,8 +15,8 @@ const LogoTitle = () => {
       className="flex items-center gap-1 hover:cursor-pointer mb-15"
       onClick={handleClick}
     >
-      <img src={busLogo} alt="모여버스 로고 아이콘" />
-      <span className="text-xl font-bold leading-7 text-black">모여버스</span>
+      <img src={busLogo} alt="모여버스 로고 아이콘" className="w-12 h-12" />
+      <h1 className="typo-h2 font-bold">모여버스</h1>
     </div>
   );
 };

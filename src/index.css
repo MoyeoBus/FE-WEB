@@ -2,6 +2,91 @@
 @import 'tailwindcss/preflight' layer(base);
 @import 'tailwindcss/utilities' layer(utilities);
 
+@theme {
+  /* colors */
+  --color-base-white: #ffffff;
+  --color-base-black: #212529;
+
+  --color-primary-lighter: #e6f2ff;
+  --color-primary-light: #cce5ff;
+  --color-primary: #007cff;
+
+  --color-accent: #fd7e14;
+  --color-accent-light: #ffe5d1;
+
+  --color-status-success: #28a745;
+  --color-status-error: #dc3545;
+
+  --color-grayscale: #6c757d;
+  --color-grayscale-light: #adb5bd;
+  --color-grayscale-lighter: #adb5bd;
+
+  --color-gradation-blue: #4da4ff;
+  --color-gradation-lightblue: #66b0ff;
+  --color-gradation-gray-900: #909294;
+  --color-gradation-gray-800: #a6a8a9;
+  --color-gradation-gray-700: #bdbebf;
+  --color-gradation-gray-600: #d3d3d4;
+  --color-gradation-gray-500: #e9eaea;
+
+  /* keep existing custom color */
+  --color-mint-500: #3eb489;
+
+  /* font sizes (with line-heights) */
+  --text-h1: 24px;
+  --leading-h1: 150%;
+  --text-h2: 18px;
+  --leading-h2: 150%;
+  --text-h3: 18px;
+  --leading-h3: 150%;
+  --text-body: 16px;
+  --leading-body: 180%;
+  --text-tableAccent: 14px;
+  --leading-tableAccent: 160%;
+  --text-table: 14px;
+  --leading-table: 150%;
+  --text-caption: 12px;
+  --leading-caption: 150%;
+}
+
+@utility typo-h1 {
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  font-weight: 700;
+}
+
+@utility typo-h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  font-weight: 500;
+}
+
+@utility typo-h3 {
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+}
+
+@utility typo-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+@utility typo-tableAccent {
+  font-size: var(--text-tableAccent);
+  line-height: var(--leading-tableAccent);
+  font-weight: 700;
+}
+
+@utility typo-table {
+  font-size: var(--text-table);
+  line-height: var(--leading-table);
+}
+
+@utility typo-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+}
+
 /* 전역 폰트 설정 */
 @layer base {
   body {
