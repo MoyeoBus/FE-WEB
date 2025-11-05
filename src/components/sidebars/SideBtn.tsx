@@ -35,14 +35,18 @@ const SideBtn = ({ btnName, clickTo, img }: SideBtnProps) => {
 
   return (
     <button
-      className={`w-44 h-12 leading-7 text-lg font-medium flex items-center justify-start gap-3 px-5.5 rounded-[10px] hover:cursor-pointer ${isActive ? 'bg-black text-white' : ''}`}
+      className={`w-46 h-12 typo-h2 flex items-center justify-start gap-3 px-5.5 rounded-[10px] hover:cursor-pointer ${isActive ? 'bg-primary text-base-white' : 'text-grayscale'}`}
       onClick={handleClick}
     >
       <img
         className="w-3.5 h-3.5"
         src={img}
         alt="사이드바 아이콘"
-        style={isActive ? { filter: 'invert(1)' } : {}}
+        style={
+          isActive
+            ? { filter: 'invert(1)' }
+            : { filter: 'grayscale(1)', opacity: 0.5 }
+        }
       />
       {btnName}
     </button>

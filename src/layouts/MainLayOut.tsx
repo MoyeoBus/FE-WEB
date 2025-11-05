@@ -16,7 +16,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   }
 
   return (
-    <div className="flex p-4 h-screen bg-[#D9D9D9]">
+    <div className="flex p-4 h-screen bg-primary-lighter">
       {userRole === 'local' ? <LocalSideBar /> : <CompanySidebar />}
       <section className="px-6 py-8 bg-white flex-1 rounded-[20px]">
         {children}
