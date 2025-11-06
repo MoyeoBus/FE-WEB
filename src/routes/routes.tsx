@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet } from 'react-router';
 import MainLayout from '../layouts/MainLayOut';
-import Home from '../pages/Home';
+import LocalPassenger from '../pages/LocalPassenger';
 
 const routes = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <LocalPassenger />,
       },
     ],
   },
