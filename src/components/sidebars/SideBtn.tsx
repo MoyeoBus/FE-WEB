@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import {
   activeLocalSidebarAtom,
-  activeCompanySidebarAtom,
+  activeOperatorSidebarAtom,
   userRoleAtom,
 } from '../../atoms/sideBarAtoms';
 
@@ -16,7 +16,9 @@ const SideBtn = ({ btnName, clickTo, img }: SideBtnProps) => {
   //전역 상태값
   const [userRole] = useAtom(userRoleAtom);
   const [activeLocal, setActiveLocal] = useAtom(activeLocalSidebarAtom);
-  const [activeCompany, setActiveCompany] = useAtom(activeCompanySidebarAtom);
+  const [activeOperator, setActiveOperator] = useAtom(
+    activeOperatorSidebarAtom
+  );
 
   const navigate = useNavigate();
 
@@ -24,14 +26,14 @@ const SideBtn = ({ btnName, clickTo, img }: SideBtnProps) => {
     navigate(clickTo);
     if (userRole === 'local') {
       setActiveLocal(btnName);
-    } else if (userRole === 'company') {
-      setActiveCompany(btnName);
+    } else if (userRole === 'operator') {
+      setActiveOperator(btnName);
     }
   };
 
   const isActive =
     (userRole === 'local' && activeLocal === btnName) ||
-    (userRole === 'company' && activeCompany === btnName);
+    (userRole === 'operator' && activeOperator === btnName);
 
   return (
     <button

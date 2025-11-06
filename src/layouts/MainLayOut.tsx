@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useAtom } from 'jotai';
 import { userRoleAtom } from '../atoms/sideBarAtoms';
 import LocalSideBar from '../components/sidebars/LocalSideBar';
-import CompanySidebar from '../components/sidebars/CompanySIdeBar';
+import OperatorSidebar from '../components/sidebars/OperatorSIdeBar';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -17,7 +17,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex p-4 h-screen bg-primary-lighter">
-      {userRole === 'local' ? <LocalSideBar /> : <CompanySidebar />}
+      {userRole === 'local' ? <LocalSideBar /> : <OperatorSidebar />}
       <section className="px-6 py-8 bg-white flex-1 rounded-[20px]">
         {children}
       </section>
