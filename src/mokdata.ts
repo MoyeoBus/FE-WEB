@@ -5,6 +5,7 @@ type DataProp = {
   persent: string;
 };
 
+//로컬 이용객 목데이터
 export const passengerMokData: DataProp[] = [
   {
     id: 'haskell',
@@ -54,4 +55,44 @@ export const passengerMokData: DataProp[] = [
     value: 10,
     persent: '40%',
   },
+];
+
+type CalendarDataProp = {
+  value: number;
+  day: string;
+};
+
+//로컬 캘린더 차트 목데이터
+export const localCalendarData: CalendarDataProp[] = [
+  { day: '2025-05-01', value: 305 },
+  { day: '2025-05-02', value: 0 },
+  { day: '2025-05-03', value: 0 },
+  { day: '2025-05-04', value: 0 },
+  { day: '2025-05-05', value: 0 },
+  { day: '2025-05-06', value: 0 },
+  { day: '2025-05-07', value: 0 },
+  { day: '2025-05-08', value: 216 },
+  { day: '2025-05-09', value: 0 },
+  { day: '2025-05-10', value: 0 },
+  { day: '2025-05-11', value: 21 },
+  { day: '2025-05-12', value: 0 },
+  { day: '2025-05-13', value: 0 },
+  { day: '2025-05-14', value: 0 },
+  { day: '2025-05-15', value: 0 },
+  { day: '2025-05-16', value: 0 },
+  { day: '2025-05-17', value: 47 },
+  { day: '2025-05-18', value: 0 },
+  { day: '2025-05-19', value: 19 },
+  { day: '2025-05-20', value: 85 },
+  { day: '2025-05-21', value: 0 },
+  { day: '2025-05-22', value: 0 },
+  { day: '2025-05-23', value: 0 },
+  { day: '2025-05-24', value: 378 },
+  { day: '2025-05-25', value: 0 },
+  { day: '2025-05-26', value: 0 },
+  { day: '2025-05-27', value: 0 },
+  { day: '2025-05-28', value: 0 },
+  { day: '2025-05-29', value: 0 },
+  { day: '2025-05-30', value: 0 },
+  { day: '2025-05-31', value: 232 },
 ];
