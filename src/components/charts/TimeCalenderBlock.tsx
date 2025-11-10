@@ -25,7 +25,7 @@ const TimeCalenderBlock = ({ value, day }: TimeCalenderBlockProps) => {
 
       {/* 툴팁 */}
       {hover && (
-        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/4 bg-black text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-10">
+        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-10">
           {day}: {value}
         </div>
       )}

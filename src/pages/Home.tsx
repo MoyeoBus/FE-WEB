@@ -1,5 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
-  return <h1>Home Page</h1>;
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/local');
+  };
+
+  return (
+    <div>
+      <button onClick={handleNavigation}>Go to Local</button>
+    </div>
+  );
 };
 
 export default Home;

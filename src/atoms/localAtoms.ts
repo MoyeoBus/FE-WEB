@@ -1,5 +1,9 @@
 import { atom } from 'jotai';
-import { passengerMokData, localCalendarData } from '../mokdata';
+import {
+  passengerMokData,
+  localCalendarData,
+  localLineMokData,
+} from '../mokdata';
 
 //이용 현황 데이터
 export const passengerData = atom(passengerMokData);
@@ -15,4 +19,8 @@ export const pieColor = atom([
   '#E9EAEA',
 ]);
 
+//일자별 이용 현황
 export const calendarData = atom(localCalendarData);
+
+//시간대별 분석
+export const lineData = atom(localLineMokData);

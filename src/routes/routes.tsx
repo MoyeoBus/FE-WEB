@@ -1,10 +1,18 @@
 import { createBrowserRouter, Outlet } from 'react-router';
 import MainLayout from '../layouts/MainLayOut';
-import LocalPassenger from '../pages/LocalPassenger';
+
+//local pages
+import PassengerStatus from '../pages/PassengerStatus';
+import RouteStatus from '../pages/RouteStatus';
+import Home from '../pages/Home';
 
 const routes = createBrowserRouter([
   {
     path: '/',
+    element: <Home />,
+  },
+  {
+    path: 'local',
     element: (
       <MainLayout>
         <Outlet />
@@ -13,7 +21,15 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LocalPassenger />,
+        element: <PassengerStatus />,
+      },
+      {
+        path: 'passengerStatus',
+        element: <PassengerStatus />,
+      },
+      {
+        path: 'routeStatus',
+        element: <RouteStatus />,
       },
     ],
   },

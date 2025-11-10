@@ -5,8 +5,8 @@ import graph from '../../assets/sidebar/graph.svg';
 import setting from '../../assets/sidebar/setting.svg';
 
 const localSide: { name: string; clickTo: string; img: string }[] = [
-  { name: '이용객 현황', clickTo: '/', img: compass },
-  { name: '노선 현황', clickTo: '/', img: graph },
+  { name: '이용객 현황', clickTo: '/local/PassengerStatus', img: compass },
+  { name: '노선 현황', clickTo: '/local/RouteStatus', img: graph },
   { name: '계정 관리', clickTo: '/', img: setting },
 ];
 

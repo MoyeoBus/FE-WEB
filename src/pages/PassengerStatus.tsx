@@ -1,13 +1,13 @@
-import LocalPie from '../components/chats/LocalPie';
+import LocalPie from '../components/charts/LocalPie';
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
 import LocalPieLegend from '../components/localmains/LocalPieLegend';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
-import SmallChartContainer from '../components/chartcontainers/SmallCartContainer';
-import LocalTimeCalendar from '../components/chats/LocalTimeCalendar';
-import LocalLine from '../components/chats/LocalLine';
+import SmallChartContainer from '../components/chartcontainers/SmallChartContainer';
+import LocalTimeCalendar from '../components/charts/LocalTimeCalendar';
+import LocalLine from '../components/charts/LocalLine';
 
-const LocalPassenger = () => {
+const PassengerStatus = () => {
   const local = '진안군';
   return (
     <div
@@ -45,4 +45,4 @@ const LocalPassenger = () => {
   );
 };
 
-export default LocalPassenger;
+export default PassengerStatus;

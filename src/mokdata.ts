@@ -96,3 +96,36 @@ export const localCalendarData: CalendarDataProp[] = [
   { day: '2025-05-30', value: 0 },
   { day: '2025-05-31', value: 232 },
 ];
+
+//시간대별 분석
+type LocalLineDataProp = {
+  id: string;
+  data: { x: string; y: number }[];
+};
+
+export const localLineMokData: LocalLineDataProp[] = [
+  {
+    id: 'path',
+    data: [
+      { x: '05', y: 10 },
+      { x: '06', y: 18 },
+      { x: '07', y: 22 },
+      { x: '08', y: 30 },
+      { x: '09', y: 25 },
+      { x: '10', y: 26 },
+      { x: '11', y: 37 },
+      { x: '12', y: 53 },
+      { x: '13', y: 30 },
+      { x: '14', y: 16 },
+      { x: '15', y: 27 },
+      { x: '16', y: 11 },
+      { x: '17', y: 3 },
+      { x: '18', y: 6 },
+      { x: '19', y: 17 },
+      { x: '20', y: 27 },
+      { x: '21', y: 26 },
+      { x: '22', y: 67 },
+      { x: '23', y: 2 },
+    ],
+  },
+];
