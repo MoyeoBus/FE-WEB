@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleNavigation = () => {
-    navigate('/local');
-  };
-
   return (
     <div>
-      <button onClick={handleNavigation}>Go to Local</button>
+      <button onClick={() => navigate('/local')}>Go to Local</button>
+      <button onClick={() => navigate('/operator')}>Go to Operator</button>
     </div>
   );
 };

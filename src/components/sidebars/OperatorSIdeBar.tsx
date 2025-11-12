@@ -5,9 +5,9 @@ import map from '../../assets/sidebar/map.svg';
 import setting from '../../assets/sidebar/setting.svg';
 
 const operatorSide: { name: string; clickTo: string; img: string }[] = [
-  { name: '데이터 분석', clickTo: '/', img: graph },
-  { name: '운행 관리', clickTo: '/', img: map },
-  { name: '계정 관리', clickTo: '/', img: setting },
+  { name: '데이터 분석', clickTo: '/operator/dataAnalysis', img: graph },
+  { name: '운행 관리', clickTo: '/operator', img: map },
+  { name: '계정 관리', clickTo: '/operator', img: setting },
 ];
 
 const OperatorSidebar = () => {

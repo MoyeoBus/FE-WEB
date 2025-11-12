@@ -1,4 +1,4 @@
-type DataProp = {
+type PieDataProp = {
   id: string;
   label: string;
   value: number;
@@ -6,7 +6,7 @@ type DataProp = {
 };
 
 //로컬 이용객 목데이터
-export const passengerMokData: DataProp[] = [
+export const passengerMokData: PieDataProp[] = [
   {
     id: 'haskell',
     label: 'haskell',
@@ -166,4 +166,45 @@ export const busData: BusDataProp[] = [
   { line: '102번', buStopCount: 14, people: 12, distance: 75 },
   { line: '110번', buStopCount: 29, people: 31, distance: 135 },
   { line: '1222번', buStopCount: 14, people: 12, distance: 75 },
+];
+
+//운수사 노선 생성 상위 지역 목데이터
+export const topRoute: BarDataProp[] = [
+  { value: 50, name: '진안읍' },
+  { value: 46, name: '용담면' },
+  { value: 40, name: '안천면' },
+  { value: 20, name: '길동읍' },
+  { value: 10, name: '영희읍' },
+];
+
+//전체 상위 탑승 정류장
+export const topBusStop: BarDataProp[] = [
+  { value: 150, name: '진안의료원' },
+  { value: 120, name: '완산체육관' },
+  { value: 90, name: '덕진공원' },
+  { value: 60, name: '전주역' },
+  { value: 30, name: '고속버스터미널' },
+];
+
+//노선별 총 운행 거리비교
+export const routeDistanceData: BarDataProp[] = [
+  { value: 300, name: '107번' },
+  { value: 250, name: '106번' },
+  { value: 200, name: '105번' },
+  { value: 150, name: '104번' },
+  { value: 100, name: '103번' },
+  { value: 50, name: '102번' },
+  { value: 10, name: '101번' },
+  { value: 20, name: '108번' },
+  { value: 40, name: '109번' },
+  { value: 60, name: '110번' },
+];
+
+//노선 개설 이유 설문 목데이터
+export const reasonMokData: PieDataProp[] = [
+  { id: '출퇴근', label: '출퇴근', value: 40, persent: '40%' },
+  { id: '통학', label: '통학', value: 25, persent: '25%' },
+  { id: '쇼핑', label: '쇼핑', value: 15, persent: '15%' },
+  { id: '레저', label: '레저', value: 10, persent: '10%' },
+  { id: '기타', label: '기타', value: 10, persent: '10%' },
 ];
