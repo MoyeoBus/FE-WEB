@@ -17,13 +17,16 @@ const BarChart = ({ data, size }: BarChartProps) => {
   let widthOfName = 'w-32';
 
   if (size === 'small') {
-    widthOfName = 'w-24';
+    widthOfName = 'w-22';
   }
 
   return (
     <div className="w-full gap-3 flex flex-col">
       {sortedData.map((item, index) => (
-        <div key={item.name} className="flex items-center gap-2.5">
+        <div
+          key={item.name}
+          className="flex justify-start items-center gap-2.5"
+        >
           <span className={`${widthOfName} typo-table`}>{item.name}</span>
           <Bar
             value={item.value}

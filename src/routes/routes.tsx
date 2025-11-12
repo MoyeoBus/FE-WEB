@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 
 //operator pages
 import DataAnalysis from '../pages/DataAnalysis';
+import OperationManagement from '../pages/OperationManagement';
 
 const routes = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const routes = createBrowserRouter([
       {
         path: 'dataAnalysis',
         element: <DataAnalysis />,
+      },
+      {
+        path: 'operationManagement',
+        element: <OperationManagement />,
       },
     ],
   },

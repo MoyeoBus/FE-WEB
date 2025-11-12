@@ -6,7 +6,7 @@ import setting from '../../assets/sidebar/setting.svg';
 
 const operatorSide: { name: string; clickTo: string; img: string }[] = [
   { name: '데이터 분석', clickTo: '/operator/dataAnalysis', img: graph },
-  { name: '운행 관리', clickTo: '/operator', img: map },
+  { name: '운행 관리', clickTo: '/operator/operationManagement', img: map },
   { name: '계정 관리', clickTo: '/operator', img: setting },
 ];
 

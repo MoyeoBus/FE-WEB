@@ -25,8 +25,9 @@ const OperatorPie = ({ data }: OperatorPieProps) => {
           activeOuterRadiusOffset={8} // hover시 얼마나 뜨는지
           arcLabelsSkipAngle={10}
           colors={color}
-          enableArcLabels={false}
           enableArcLinkLabels={false}
+          arcLabel={d => `${d.id}`}
+          arcLabelsTextColor="#FFFFFF"
         />
       </section>
       <section>
