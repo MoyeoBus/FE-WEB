@@ -21,7 +21,7 @@ const LocalTimeCalendar = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-start p-4">
+    <div className="w-full h-full flex flex-col items-start">
       {/* 월 선택 입력 (YYYY-MM 형식) */}
       <section className="w-full flex justify-between ">
         <SubTitle subTitle="일자별 이용 현황" />

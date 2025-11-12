@@ -129,3 +129,41 @@ export const localLineMokData: LocalLineDataProp[] = [
     ],
   },
 ];
+
+//로컬 노선현황 바차트 목데이터
+type BarDataProp = {
+  value: number;
+  name: string;
+};
+
+export const barData: BarDataProp[] = [
+  { value: 190, name: '완산체육관' },
+  { value: 70, name: '진안의료원' },
+  { value: 30, name: '덕진공원' },
+  { value: 50, name: '전주역' },
+  { value: 50, name: '전주역' },
+  { value: 50, name: '전주역' },
+  { value: 50, name: '전주역' },
+  { value: 50, name: '전주역' },
+  { value: 50, name: '전주역' },
+];
+
+//로컬 노선별 이용 통계 목데이터
+
+type BusDataProp = {
+  line: string;
+  buStopCount: number;
+  people: number;
+  distance: number;
+};
+
+export const busData: BusDataProp[] = [
+  { line: '107번', buStopCount: 18, people: 19, distance: 98 },
+  { line: '106번', buStopCount: 24, people: 27, distance: 112 },
+  { line: '105번', buStopCount: 20, people: 23, distance: 120 },
+  { line: '104번', buStopCount: 16, people: 15, distance: 87 },
+  { line: '103번', buStopCount: 29, people: 31, distance: 135 },
+  { line: '102번', buStopCount: 14, people: 12, distance: 75 },
+  { line: '110번', buStopCount: 29, people: 31, distance: 135 },
+  { line: '1222번', buStopCount: 14, people: 12, distance: 75 },
+];

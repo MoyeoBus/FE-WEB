@@ -1,3 +1,6 @@
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import { activeLocalSidebarAtom } from '../atoms/sideBarAtoms';
 import LocalPie from '../components/charts/LocalPie';
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
@@ -8,6 +11,11 @@ import LocalTimeCalendar from '../components/charts/LocalTimeCalendar';
 import LocalLine from '../components/charts/LocalLine';
 
 const PassengerStatus = () => {
+  const [, setActiveLocal] = useAtom(activeLocalSidebarAtom);
+  useEffect(() => {
+    setActiveLocal('이용객 현황');
+  }, [setActiveLocal]);
+
   const local = '진안군';
   return (
     <div

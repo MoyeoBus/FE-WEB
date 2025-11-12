@@ -21,7 +21,7 @@ const LocalLine = () => {
   };
 
   return (
-    <div className="h-full w-full min-w-0 flex flex-col items-start p-4">
+    <div className="h-full w-full min-w-0 flex flex-col items-start">
       <section className="flex w-full min-w-0 justify-between items-center gap-2 mb-2">
         <SubTitle subTitle="시간대별 분석(명)" />
         <input
