@@ -9,7 +9,7 @@ const OperationManagement = () => {
         <MainTitle title="운행 관리" />
         <SubTitle subTitle="실시간 운행 현황과 경로를 관리하세요." />
       </div>
-      <div className="flex-1 min-h-0 mt-9">
+      <div className="flex-1 min-h-0 mt-2.5">
         <OperatorPathFind />
       </div>
     </div>
