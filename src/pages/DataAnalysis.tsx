@@ -8,7 +8,7 @@ import {
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
-import SmallChartContainer from '../components/chartcontainers/SmallChartContainer';
+import SmallChartContainer from '../components/containers/SmallChartContainer';
 import BarChart from '../components/charts/BarChart';
 import OperatorPie from '../components/charts/OperatorPie';
 
@@ -28,13 +28,13 @@ const DataAnalysis = () => {
         <MainSmallLayout>
           <SmallChartContainer>
             <div className="mb-10">
-              <SubTitle subTitle="노선 생성 상위 지역" />
+              <SubTitle subTitle="노선 생성 상위 지역 (개)" />
             </div>
             <BarChart data={topRoute} size="small" />
           </SmallChartContainer>
           <SmallChartContainer>
             <div className="mb-10">
-              <SubTitle subTitle="노선 개설 이유 설문" />
+              <SubTitle subTitle="노선 개설 이유 설문 (명)" />
             </div>
             <OperatorPie data={reasonMokData} />
           </SmallChartContainer>
@@ -45,13 +45,13 @@ const DataAnalysis = () => {
         <MainSmallLayout>
           <SmallChartContainer>
             <div className="mb-10">
-              <SubTitle subTitle="전체 상위 탑승 정류장" />
+              <SubTitle subTitle="전체 상위 탑승 정류장 (명)" />
             </div>
             <BarChart data={topBusStop} size="small" />
           </SmallChartContainer>
           <SmallChartContainer>
             <div className="mb-10">
-              <SubTitle subTitle="노선별 총 운행거리 비교" />
+              <SubTitle subTitle="노선별 총 운행거리 비교 (km)" />
             </div>
             <BarChart data={routeDistanceData} size="small" />
           </SmallChartContainer>

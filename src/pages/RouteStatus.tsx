@@ -7,7 +7,7 @@ import SubTitle from '../components/maintexts/SubTitle';
 import DownLoadBtn from '../components/localmains/DownLoadBtn';
 import DropDownSelect from '../components/localmains/DropDownSelect';
 import RouteUseState from '../components/localmains/RouteUseState';
-import BigChartContainer from '../components/chartcontainers/BigChartContainer';
+import BigChartContainer from '../components/containers/BigChartContainer';
 import BarChart from '../components/charts/BarChart';
 
 const routeName = '107번';

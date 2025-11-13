@@ -5,9 +5,7 @@ interface MainSmallLayoutProps {
 }
 
 const MainSmallLayout = ({ children }: MainSmallLayoutProps) => {
-  return (
-    <div className="flex w-full h-full min-w-0 gap-6 mt-2">{children}</div>
-  );
+  return <div className="flex w-full h-full gap-6 mt-2">{children}</div>;
 };
 
 export default MainSmallLayout;

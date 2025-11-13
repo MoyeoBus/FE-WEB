@@ -21,6 +21,7 @@
     "jotai": "^2.15.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-kakao-maps-sdk": "^1.2.0",
     "react-router-dom": "^7.9.5",
     "tailwindcss": "^4.1.16",
     "xlsx": "^0.18.5"

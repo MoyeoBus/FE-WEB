@@ -6,7 +6,7 @@ import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
 import LocalPieLegend from '../components/localmains/LocalPieLegend';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
-import SmallChartContainer from '../components/chartcontainers/SmallChartContainer';
+import SmallChartContainer from '../components/containers/SmallChartContainer';
 import LocalTimeCalendar from '../components/charts/LocalTimeCalendar';
 import LocalLine from '../components/charts/LocalLine';
 

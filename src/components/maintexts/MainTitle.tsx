@@ -1,5 +1,5 @@
 type MainTitleProps = {
-  title: string;
+  title: string | number;
 };
 
 const MainTitle = ({ title }: MainTitleProps) => {
