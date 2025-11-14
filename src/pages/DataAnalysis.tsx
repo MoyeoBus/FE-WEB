@@ -1,18 +1,22 @@
-import {
-  topRoute,
-  topBusStop,
-  routeDistanceData,
-  reasonMokData,
-} from '../mokdata';
-
+import { topRoute, topBusStop, routeDistanceData } from '../mokdata';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { activeOperatorSidebarAtom } from '../atoms/sideBarAtoms';
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
 import SmallChartContainer from '../components/containers/SmallChartContainer';
+import BigChartContainer from '../components/containers/BigChartContainer';
 import BarChart from '../components/charts/BarChart';
-import OperatorPie from '../components/charts/OperatorPie';
 
 const DataAnalysis = () => {
+  const [, setActiveOperator] = useAtom(activeOperatorSidebarAtom);
+
+  // 사이드바 활성화 상태 설정
+  useEffect(() => {
+    setActiveOperator('데이터 분석');
+  }, [setActiveOperator]);
+
   return (
     <div
       className="overflow-y-scroll h-full w-full min-w-180 flex flex-col"
@@ -24,21 +28,15 @@ const DataAnalysis = () => {
       <MainTitle title="데이터 분석" />
       <SubTitle subTitle="노선별 운행률 및 승객 수요를 조사합니다." />
       <section className="mt-9">
-        <MainTitle title="전체 노선 생성 현황" />
-        <MainSmallLayout>
-          <SmallChartContainer>
-            <div className="mb-10">
-              <SubTitle subTitle="노선 생성 상위 지역 (개)" />
-            </div>
-            <BarChart data={topRoute} size="small" />
-          </SmallChartContainer>
-          <SmallChartContainer>
-            <div className="mb-10">
-              <SubTitle subTitle="노선 개설 이유 설문 (명)" />
-            </div>
-            <OperatorPie data={reasonMokData} />
-          </SmallChartContainer>
-        </MainSmallLayout>
+        <div className="mb-2.5">
+          <MainTitle title="전체 노선 생성 현황" />
+        </div>
+        <BigChartContainer>
+          <div className="mb-10">
+            <SubTitle subTitle="노선 생성 상위 지역 (개)" />
+          </div>
+          <BarChart data={topRoute} size="large" />
+        </BigChartContainer>
       </section>
       <section className="mt-9">
         <MainTitle title="전체 노선 운행 현황" />

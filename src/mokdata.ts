@@ -208,3 +208,70 @@ export const reasonMokData: PieDataProp[] = [
   { id: '레저', label: '레저', value: 10, persent: '10%' },
   { id: '기타', label: '기타', value: 10, persent: '10%' },
 ];
+
+type pathDataProp = {
+  line: number;
+  pathInfo: string;
+  driver: string;
+  status: string;
+  extraInfo: string;
+};
+
+export const pathData: pathDataProp[] = [
+  {
+    line: 107,
+    pathInfo: '송풍저수지 → 전주역',
+    driver: '홍길동',
+    status: '운행전',
+    extraInfo: '추적',
+  },
+  {
+    line: 106,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '홍길동',
+    status: '운행중',
+    extraInfo: '추적',
+  },
+  {
+    line: 105,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '홍길동',
+    status: '운행중',
+    extraInfo: '추적',
+  },
+  {
+    line: 104,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '전우치',
+    status: '운행중',
+    extraInfo: '추적',
+  },
+  {
+    line: 103,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '전우치',
+    status: '운행 종료',
+    extraInfo: '이력',
+  },
+  {
+    line: 102,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '전우치',
+    status: '운행 종료',
+    extraInfo: '이력',
+  },
+  {
+    line: 110,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '전우치',
+    status: '운행 종료',
+    extraInfo: '이력',
+  },
+  {
+    line: 1222,
+    pathInfo: '기본 경로 정보 없음',
+    driver: '전우치',
+    status: '운행 종료',
+    extraInfo: '이력',
+  },
+];

@@ -1,14 +1,10 @@
 import { atom } from 'jotai';
 import {
-  passengerMokData,
   localCalendarData,
   localLineMokData,
   barData,
   busData,
 } from '../mokdata';
-
-//이용 현황 데이터
-export const passengerData = atom(passengerMokData);
 
 export const pieColor = atom([
   '#FD7E14',

@@ -9,6 +9,8 @@ import Home from '../pages/Home';
 //operator pages
 import DataAnalysis from '../pages/DataAnalysis';
 import OperationManagement from '../pages/OperationManagement';
+import OperatorPathFind from '../operatormains/OperatorPathFind';
+import OperatorPathList from '../operatormains/OperatorPathList';
 
 const routes = createBrowserRouter([
   {
@@ -56,6 +58,20 @@ const routes = createBrowserRouter([
       {
         path: 'operationManagement',
         element: <OperationManagement />,
+        children: [
+          {
+            index: true,
+            element: <OperatorPathList />,
+          },
+          {
+            path: 'pathList',
+            element: <OperatorPathList />,
+          },
+          {
+            path: 'pathFind',
+            element: <OperatorPathFind />,
+          },
+        ],
       },
     ],
   },

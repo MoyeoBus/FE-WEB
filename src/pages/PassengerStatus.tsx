@@ -1,14 +1,14 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { activeLocalSidebarAtom } from '../atoms/sideBarAtoms';
-import LocalPie from '../components/charts/LocalPie';
+import { reasonMokData, passengerMokData } from '../mokdata';
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
-import LocalPieLegend from '../components/localmains/LocalPieLegend';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
 import SmallChartContainer from '../components/containers/SmallChartContainer';
 import LocalTimeCalendar from '../components/charts/LocalTimeCalendar';
 import LocalLine from '../components/charts/LocalLine';
+import Pie from '../components/charts/Pie';
 
 const PassengerStatus = () => {
   const [, setActiveLocal] = useAtom(activeLocalSidebarAtom);
@@ -29,14 +29,20 @@ const PassengerStatus = () => {
       <SubTitle subTitle="노선별 운행률 및 승객 수요를 조사합니다." />
       <section className="mt-9">
         <MainTitle title={local + ' 이용 현황'} />
-        <section className="w-full min-w-20 h-90 rounded-[10px] border border-gray-300 mt-2 flex justify-center items-center gap-25">
-          <div className="max-w-90 w-90 h-90">
-            <LocalPie />
-          </div>
-          <div className="max-w-40 w-40 h-90">
-            <LocalPieLegend />
-          </div>
-        </section>
+        <MainSmallLayout>
+          <SmallChartContainer>
+            <div className="mb-10">
+              <SubTitle subTitle="이용객 분포 (명)" />
+            </div>
+            <Pie data={passengerMokData} />
+          </SmallChartContainer>
+          <SmallChartContainer>
+            <div className="mb-10">
+              <SubTitle subTitle="노선 개설 이유 설문 (명)" />
+            </div>
+            <Pie data={reasonMokData} />
+          </SmallChartContainer>
+        </MainSmallLayout>
       </section>
       <section className="mt-9">
         <MainTitle title={local + ' 상세 이용 현황'} />
