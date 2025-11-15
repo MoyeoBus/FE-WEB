@@ -1,6 +1,24 @@
-import { pathData } from '../mokdata';
+import { useNavigate } from 'react-router-dom';
 
-const PathListTable = () => {
+type PathData = {
+  line: number;
+  pathInfo: string;
+  driver: string;
+  status: string;
+  extraInfo: string;
+};
+
+const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
+  const navigate = useNavigate();
+
+  const handleStatusClick = (status: string) => {
+    if (status === '추적') {
+      navigate('/operator/operationManagement/pathFind');
+    } else {
+      navigate('/operator/operationManagement/pastPath');
+    }
+  };
+
   return (
     <div className="mx-auto w-full h-85 border border-gray-300 rounded-lg overflow-hidden">
       <div
@@ -48,7 +66,10 @@ const PathListTable = () => {
                 <td className="py-3 px-4 border-r typo-table text-base-black border-gray-300">
                   {item.status}
                 </td>
-                <td className="py-3 px-4 text-grayscale-lighter underline cursor-pointer">
+                <td
+                  className="py-3 px-4 text-grayscale-lighter underline cursor-pointer"
+                  onClick={() => handleStatusClick(item.extraInfo)}
+                >
                   {item.extraInfo}
                 </td>
               </tr>

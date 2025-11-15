@@ -6,7 +6,7 @@ interface Stop {
   id: number;
   name: string;
   time: string;
-  status: '출발' | '예정' | '종점' | '지남' | '현재';
+  status: '출발' | '예정' | '종점' | '지남' | '현재' | '종료';
   latlng: { lat: number; lng: number };
 }
 
@@ -28,6 +28,10 @@ const PathInfo = ({ line, driver, stops }: BusRouteCardProps) => {
     if (currentStop && selectedStopId === null) {
       setSelectedStopId(currentStop.id);
       setPointed({ lat: currentStop.latlng.lat, lng: currentStop.latlng.lng });
+    } else if (!currentStop && stops.length > 0 && selectedStopId === null) {
+      // '현재' 상태의 정류장이 없으면 첫 번째 정류장으로 설정
+      setSelectedStopId(stops[0].id);
+      setPointed({ lat: stops[0].latlng.lat, lng: stops[0].latlng.lng });
     }
   }, [stops, selectedStopId, setPointed]);
 

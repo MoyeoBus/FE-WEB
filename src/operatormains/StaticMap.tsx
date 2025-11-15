@@ -26,8 +26,8 @@ const StaticMap = ({ data }: StaticMapComponentProps) => {
       id="map"
       center={{
         // 지도의 중심좌표
-        lat: 33.450701,
-        lng: 126.570667,
+        lat: pointed.lat != null ? pointed.lat : 0,
+        lng: pointed.lng != null ? pointed.lng : 0,
       }}
       style={{
         // 지도의 크기
@@ -36,7 +36,7 @@ const StaticMap = ({ data }: StaticMapComponentProps) => {
         borderRadius: '0.625rem',
         border: '1px solid var(--Grayscale-Outline, #CED4DA)',
       }}
-      level={3} // 지도의 확대 레벨
+      level={6} // 지도의 확대 레벨
     >
       <Polyline
         path={[

@@ -27,7 +27,8 @@ const OperationManagement = () => {
           <MainTitle title="운행 관리" />
           <SubTitle subTitle="실시간 운행 현황과 경로를 관리하세요." />
         </section>
-        {location.pathname === '/operator/operationManagement/pathFind' && (
+        {(location.pathname === '/operator/operationManagement/pathFind' ||
+          location.pathname === '/operator/operationManagement/pastPath') && (
           <button
             className="typo-h2 hover:cursor-pointer"
             onClick={handleGoBack}

@@ -1,3 +1,4 @@
+import { pathData } from '../mokdata';
 import MiniTextsLayOut from '../layouts/MiniTextsLayOut';
 import MiniTextContainer from '../components/containers/MiniTextContainer';
 import MainTitle from '../components/maintexts/MainTitle';
@@ -27,7 +28,7 @@ const OperatorPathList = () => {
         <div className="mb-2.5">
           <MainTitle title="운행 이력 및 실시간 위치 조회" />
         </div>
-        <PathListTable />
+        <PathListTable pathData={pathData} />
       </section>
     </div>
   );
