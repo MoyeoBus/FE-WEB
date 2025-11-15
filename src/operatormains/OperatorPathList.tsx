@@ -14,7 +14,10 @@ const OperatorPathList = () => {
   return (
     <div className="w-full h-full flex flex-col gap-3 min-h-0">
       <MiniTextsLayOut>
-        <MiniTextContainer name="오늘 운행" value={inputData.todayCount} />
+        <MiniTextContainer
+          name="오늘 운행"
+          value={inputData.todayCount + ' 건'}
+        />
         <MiniTextContainer
           name="배차 건수"
           value={inputData.pathCount + ' 건'}
