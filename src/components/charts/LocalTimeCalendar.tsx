@@ -1,12 +1,15 @@
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { calendarData } from '../../atoms/localAtoms';
 import SubTitle from '../maintexts/SubTitle';
 import TimeCalenderBlock from './TimeCalenderBlock';
 import TimeCalenderLegend from '../localmains/TimeCalenderLegend';
 
+//api
+import { getLocalMonthlyUsage } from '../../api/localApi';
+
 const LocalTimeCalendar = () => {
-  const data = useAtomValue(calendarData);
+  const [data, setCalendar] = useAtom(calendarData);
 
   // 초기값: 현재 년월 기준
   const now = new Date();
@@ -17,7 +20,13 @@ const LocalTimeCalendar = () => {
   //날짜 변경
   const handleMonthChange = (newMonth: string) => {
     setYearMonth(newMonth);
-    //여기에 값을 갱신하는 로직 추가 필요
+    getLocalMonthlyUsage(1, newMonth) // yearMonth 대신 newMonth 사용
+      .then(response => {
+        setCalendar(response.data.result.data);
+      })
+      .catch(error => {
+        console.error('월별 이용 현황 데이터 가져오기 실패:', error);
+      });
   };
 
   return (
@@ -33,9 +42,15 @@ const LocalTimeCalendar = () => {
         />
       </section>
       <section className="w-full h-60 mt-8 grid grid-cols-7 gap-2 mb-5">
-        {data.map((item, index) => (
-          <TimeCalenderBlock key={index} value={item.value} day={item.day} />
-        ))}
+        {data && data.length > 0
+          ? data.map((item, index) => (
+              <TimeCalenderBlock
+                key={index}
+                value={item.useCount}
+                day={item.date}
+              />
+            ))
+          : null}
       </section>
       <TimeCalenderLegend />
     </div>

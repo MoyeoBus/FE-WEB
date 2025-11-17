@@ -1,10 +1,6 @@
 import { atom } from 'jotai';
-import {
-  localCalendarData,
-  localLineMokData,
-  barData,
-  busData,
-} from '../mokdata';
+import type { MonthlyItem, HourlyItem } from '../types/localtype';
+import { barData, busData } from '../mokdata';
 
 export const pieColor = atom([
   '#FD7E14',
@@ -18,10 +14,10 @@ export const pieColor = atom([
 ]);
 
 //일자별 이용 현황
-export const calendarData = atom(localCalendarData);
+export const calendarData = atom<MonthlyItem[] | null>([]);
 
 //시간대별 분석
-export const lineData = atom(localLineMokData);
+export const lineData = atom<HourlyItem[] | null>([]);
 
 //바차트 데이터
 export const barChartData = atom(barData);

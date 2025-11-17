@@ -3,9 +3,10 @@ import { useState } from 'react';
 import SubTitle from '../maintexts/SubTitle';
 import { useAtom } from 'jotai';
 import { lineData } from '../../atoms/localAtoms';
+import { getLocalHourlyUsage } from '../../api/localApi';
 
 const LocalLine = () => {
-  const [data] = useAtom(lineData);
+  const [data, setLine] = useAtom(lineData);
 
   // 현재 날짜를 기본값으로 사용 (YYYY-MM-DD)
   const today = new Date();
@@ -18,6 +19,14 @@ const LocalLine = () => {
   const handleMonthChange = (newDate: string) => {
     setYearMonthDay(newDate);
     // TODO: 데이터를 서버에서 받아와야 하면 여기에서 호출하세요.
+    getLocalHourlyUsage(1, newDate)
+      .then(response => {
+        setLine(response.data.result.data);
+        console.log('시간대별 이용 현황 데이터:', response.data.result);
+      })
+      .catch(error => {
+        console.error('시간대별 이용 현황 데이터 가져오기 실패:', error);
+      });
   };
 
   return (
@@ -40,7 +49,16 @@ const LocalLine = () => {
       >
         <div className="min-w-[1000px] h-full">
           <ResponsiveLine
-            data={data}
+            data={[
+              {
+                id: 'path',
+                data:
+                  data?.map(line => ({
+                    x: line.hour.toString().padStart(2, '0'),
+                    y: line.useCount,
+                  })) || [],
+              },
+            ]}
             margin={{ top: 30, right: 10, bottom: 50, left: 30 }}
             enableGridX={false}
             pointSize={10}
