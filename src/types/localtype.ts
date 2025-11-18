@@ -51,3 +51,26 @@ export interface LocalHourlyUsageResult {
   govName: string;
   data: HourlyItem[];
 }
+
+//지자체 노선별 통계 조회
+export interface RouteItem {
+  routeId: number;
+  stationCount: number;
+  peopleCount: number;
+  distance: number;
+}
+
+export interface LocalRouteUsageResult {
+  govName: string;
+  items: RouteItem[];
+}
+
+//지자체 노선별 목적지, 출발지 기준 통계
+export interface DestinationItem {
+  stationName: string;
+  count: number;
+}
+
+export interface LocalRouteDestinationResult {
+  items: DestinationItem[];
+}

@@ -1,6 +1,10 @@
 import { atom } from 'jotai';
-import type { MonthlyItem, HourlyItem } from '../types/localtype';
-import { barData, busData } from '../mokdata';
+import type {
+  MonthlyItem,
+  HourlyItem,
+  RouteItem,
+  DestinationItem,
+} from '../types/localtype';
 
 export const pieColor = atom([
   '#FD7E14',
@@ -19,11 +23,14 @@ export const calendarData = atom<MonthlyItem[] | null>([]);
 //시간대별 분석
 export const lineData = atom<HourlyItem[] | null>([]);
 
-//바차트 데이터
-export const barChartData = atom(barData);
+//도착지 바차트 데이터
+export const destinatoinBarChartData = atom<DestinationItem[] | null>([]);
+
+//출발지 바차트 데이터
+export const departureBarChartData = atom<DestinationItem[] | null>([]);
 
 //그래프 디스플레이 유무 데이터
 export const graphOptions = atom(false);
 
 //노선별 이용 통계
-export const routeUseStateData = atom(busData);
+export const routeUseStateData = atom<RouteItem[] | null>([]);

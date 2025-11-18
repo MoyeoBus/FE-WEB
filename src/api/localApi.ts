@@ -5,6 +5,8 @@ import type {
   LocalMonthlyUsageResult,
   LocalSurveyResult,
   LocalHourlyUsageResult,
+  LocalRouteUsageResult,
+  LocalRouteDestinationResult,
 } from '../types/localtype';
 
 //지자체 구역별 이용 현황
@@ -32,5 +34,26 @@ export const getLocalSurveyStats = (region: number) => {
 export const getLocalHourlyUsage = (region: number, stdDate: string) => {
   return baseAxiosInstance.get<ApiResponse<LocalHourlyUsageResult>>(
     `/api/v1/locals/${region}/time?stdDate=${stdDate}`
+  );
+};
+
+//노선별 통계조회
+export const getLocalRouteUsage = (region: number) => {
+  return baseAxiosInstance.get<ApiResponse<LocalRouteUsageResult>>(
+    `/api/v1/locals/${region}/route`
+  );
+};
+
+//노선별 목적지 도착지 기준 요청 통계
+export const getLocalRouteDestinationStats = (routeId: number) => {
+  return baseAxiosInstance.get<ApiResponse<LocalRouteDestinationResult>>(
+    `/api/v1/locals/${routeId}/destinations`
+  );
+};
+
+//노선별 출발지 기준 요청 통계
+export const getLocalRouteDepartureStats = (routeId: number) => {
+  return baseAxiosInstance.get<ApiResponse<LocalRouteDestinationResult>>(
+    `/api/v1/locals/${routeId}/departures`
   );
 };

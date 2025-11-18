@@ -136,7 +136,7 @@ type BarDataProp = {
   name: string;
 };
 
-export const barData: BarDataProp[] = [
+export const ebarData: BarDataProp[] = [
   { value: 190, name: '완산체육관' },
   { value: 70, name: '진안의료원' },
   { value: 30, name: '덕진공원' },
