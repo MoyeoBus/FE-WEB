@@ -1,7 +1,18 @@
-import { topRoute, topBusStop, routeDistanceData } from '../mokdata';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { activeOperatorSidebarAtom } from '../atoms/sideBarAtoms';
+
+import {
+  getTopRegionRequests,
+  getTopBusStops,
+  getRouteDistances,
+} from '../api/operatorApi';
+import type {
+  TopRegionItem,
+  TopBusStopItem,
+  RouteDistanceItem,
+} from '../types/operatorType';
+
 import MainTitle from '../components/maintexts/MainTitle';
 import SubTitle from '../components/maintexts/SubTitle';
 import MainSmallLayout from '../layouts/MainSmalllLayOut';
@@ -11,11 +22,42 @@ import BarChart from '../components/charts/BarChart';
 
 const DataAnalysis = () => {
   const [, setActiveOperator] = useAtom(activeOperatorSidebarAtom);
+  const [rankingData, setRankingData] = useState<TopRegionItem[] | null>([]);
+  const [topBusStopData, setTopBusStopData] = useState<TopBusStopItem[] | null>(
+    []
+  );
+  const [routeDistanceData, setRouteDistanceData] = useState<
+    RouteDistanceItem[] | null
+  >([]);
 
   // 사이드바 활성화 상태 설정
   useEffect(() => {
     setActiveOperator('데이터 분석');
   }, [setActiveOperator]);
+
+  useEffect(() => {
+    getTopRegionRequests(1)
+      .then(response => {
+        setRankingData(response.data.result.items);
+      })
+      .catch(error => {
+        console.error('API 요청 중 오류 발생:', error);
+      });
+    getTopBusStops(1)
+      .then(response => {
+        setTopBusStopData(response.data.result.items);
+      })
+      .catch(error => {
+        console.error('API 요청 중 오류 발생:', error);
+      });
+    getRouteDistances(1)
+      .then(response => {
+        setRouteDistanceData(response.data.result.items);
+      })
+      .catch(error => {
+        console.error('API 요청 중 오류 발생:', error);
+      });
+  }, []);
 
   return (
     <div
@@ -33,9 +75,17 @@ const DataAnalysis = () => {
         </div>
         <BigChartContainer>
           <div className="mb-10">
-            <SubTitle subTitle="노선 생성 상위 지역 (개)" />
+            <SubTitle subTitle="TOP 5 노선 생성 상위 지역 (개)" />
           </div>
-          <BarChart data={topRoute} size="large" />
+          <BarChart
+            data={
+              rankingData?.map(item => ({
+                name: item.areaName,
+                value: item.requestCount,
+              })) || []
+            }
+            size="large"
+          />
         </BigChartContainer>
       </section>
       <section className="mt-9">
@@ -43,15 +93,31 @@ const DataAnalysis = () => {
         <MainSmallLayout>
           <SmallChartContainer>
             <div className="mb-10">
-              <SubTitle subTitle="전체 상위 탑승 정류장 (명)" />
+              <SubTitle subTitle="전체 TOP 5 탑승 정류장 (명)" />
             </div>
-            <BarChart data={topBusStop} size="small" />
+            <BarChart
+              data={
+                topBusStopData?.map(item => ({
+                  name: item.stationName,
+                  value: item.requestCount,
+                })) || []
+              }
+              size="small"
+            />
           </SmallChartContainer>
           <SmallChartContainer>
             <div className="mb-10">
               <SubTitle subTitle="노선별 총 운행거리 비교 (km)" />
             </div>
-            <BarChart data={routeDistanceData} size="small" />
+            <BarChart
+              data={
+                routeDistanceData?.map(item => ({
+                  name: item.routeNo.toString(),
+                  value: item.distance,
+                })) || []
+              }
+              size="small"
+            />
           </SmallChartContainer>
         </MainSmallLayout>
       </section>

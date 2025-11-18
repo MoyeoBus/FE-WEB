@@ -7,7 +7,7 @@ import type {
   LocalHourlyUsageResult,
   LocalRouteUsageResult,
   LocalRouteDestinationResult,
-} from '../types/localtype';
+} from '../types/localType';
 
 //지자체 구역별 이용 현황
 export const getLocalUsageByRegion = (region: number) => {

@@ -4,7 +4,7 @@ import type {
   HourlyItem,
   RouteItem,
   DestinationItem,
-} from '../types/localtype';
+} from '../types/localType';
 
 export const pieColor = atom([
   '#FD7E14',

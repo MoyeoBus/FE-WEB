@@ -21,7 +21,7 @@ import {
   getLocalHourlyUsage,
 } from '../api/localApi';
 //타입
-import type { LocalUsageResult, LocalSurveyResult } from '../types/localtype';
+import type { LocalUsageResult, LocalSurveyResult } from '../types/localType';
 
 const PassengerStatus = () => {
   const [, setActiveLocal] = useAtom(activeLocalSidebarAtom);
