@@ -4,6 +4,7 @@ import type {
   TopRegionResult,
   TopBusStopResult,
   RouteDistanceResult,
+  OperatorStatusResult,
 } from '../types/operatorType';
 
 //지역 기반 요청 랭킹 top 5 조회
@@ -24,5 +25,12 @@ export const getTopBusStops = (operatorId: number) => {
 export const getRouteDistances = (operatorId: number) => {
   return baseAxiosInstance.get<ApiResponse<RouteDistanceResult>>(
     `/api/v1/transports/${operatorId}/distances`
+  );
+};
+
+//운수사 운행 현황 조회
+export const getOperatorStatus = (operatorId: number) => {
+  return baseAxiosInstance.get<ApiResponse<OperatorStatusResult>>(
+    `/api/v1/transports/${operatorId}/operate`
   );
 };

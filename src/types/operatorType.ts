@@ -38,3 +38,20 @@ export interface RouteDistanceItem {
 export interface RouteDistanceResult {
   items: RouteDistanceItem[];
 }
+
+//운수사 운행 현황 조회
+export interface OperatorHistoryItem {
+  routeId: number;
+  departureNm: string;
+  destinationNm: string;
+  status: string;
+}
+
+export interface OperatorStatusResult {
+  operationCount: number;
+  busUsage: {
+    operateCount: number;
+    completedCount: number;
+  };
+  history: OperatorHistoryItem[];
+}
