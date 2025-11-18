@@ -5,7 +5,6 @@ type PathData = {
   pathInfo: string;
   driver: string;
   status: string;
-  extraInfo: string;
 };
 
 const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
@@ -17,6 +16,18 @@ const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
     } else {
       navigate('/operator/operationManagement/pastPath');
     }
+  };
+
+  const statusToTextStatusMap: { [key: string]: string } = {
+    CREATED: '운행전',
+    OPERATING: '운행 중',
+    OPERATED: '운행 종료',
+  };
+
+  const statusToDetailMap: { [key: string]: string } = {
+    CREATED: '추적',
+    OPERATING: '추적',
+    OPERATED: '상세 정보',
   };
 
   return (
@@ -33,13 +44,13 @@ const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
           <thead className="bg-gray-50 sticky top-0 z-9">
             <tr className="border-b border-gray-300 text-gray-700">
               <th className="py-3 px-4 typo-table typo-table-black border-r border-gray-300">
-                버스 번호
+                노선 번호
               </th>
               <th className="py-3 px-4 typo-table typo-base-black border-r border-gray-300">
-                노선정보
+                노선 정보
               </th>
               <th className="py-3 px-4 typo-table typo-base-black border-r border-gray-300">
-                담당기사
+                담당 기사
               </th>
               <th className="py-3 px-4 typo-table typo-base-black border-r border-gray-300">
                 상태
@@ -64,13 +75,15 @@ const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
                   {item.driver}
                 </td>
                 <td className="py-3 px-4 border-r typo-table text-base-black border-gray-300">
-                  {item.status}
+                  {statusToTextStatusMap[item.status]}
                 </td>
                 <td
                   className="py-3 px-4 text-grayscale-lighter underline cursor-pointer"
-                  onClick={() => handleStatusClick(item.extraInfo)}
+                  onClick={() =>
+                    handleStatusClick(statusToDetailMap[item.status])
+                  }
                 >
-                  {item.extraInfo}
+                  {statusToDetailMap[item.status]}
                 </td>
               </tr>
             ))}
