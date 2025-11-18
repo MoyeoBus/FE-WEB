@@ -28,13 +28,14 @@ const DropDownSelect = () => {
   }, []);
 
   const sortData = (option: string) => {
+    if (!busData) return;
     const sortedData = [...busData];
     if (option === '승객수') {
-      sortedData.sort((a, b) => b.people - a.people);
+      sortedData.sort((a, b) => b.peopleCount - a.peopleCount);
     } else if (option === '거리') {
       sortedData.sort((a, b) => b.distance - a.distance);
     } else if (option === '정류장 수') {
-      sortedData.sort((a, b) => b.buStopCount - a.buStopCount);
+      sortedData.sort((a, b) => b.stationCount - a.stationCount);
     }
     setBusData(sortedData);
   };

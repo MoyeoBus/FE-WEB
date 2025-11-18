@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 import { useAtom } from 'jotai';
+import { useLocation } from 'react-router-dom';
 import { userRoleAtom } from '../atoms/sideBarAtoms';
 import LocalSideBar from '../components/sidebars/LocalSideBar';
 import OperatorSidebar from '../components/sidebars/OperatorSIdeBar';
@@ -9,7 +11,17 @@ interface MainLayoutProps {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  const [userRole] = useAtom(userRoleAtom);
+  const location = useLocation();
+  const [userRole, setUserRole] = useAtom(userRoleAtom);
+
+  // URL 경로를 기반으로 역할 자동 설정
+  useEffect(() => {
+    if (location.pathname.startsWith('/local')) {
+      setUserRole('local');
+    } else if (location.pathname.startsWith('/operator')) {
+      setUserRole('operator');
+    }
+  }, [location.pathname, setUserRole]);
 
   if (!userRole) {
     return <div>로딩 중...</div>;
