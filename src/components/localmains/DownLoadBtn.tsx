@@ -27,8 +27,8 @@ const DownLoadBtn = ({ name }: DownLoadBtnProps) => {
   //CSV 다운로드 함수
   const downloadCSV = () => {
     // XLSX 유틸을 그대로 사용해도 깔끔합니다
-    const worksheet = XLSX.utils.json_to_sheet(busData);
-    const csv = XLSX.utils.sheet_to_csv(worksheet);
+    const worksheet = XLSX.utils.json_to_sheet(busData || []);
+    const csv = XLSX.utils.sheet_to_csv(worksheet || []);
 
     // 한글 깨짐 방지를 위해 BOM 추가
     const csvWithBOM = '\uFEFF' + csv;
