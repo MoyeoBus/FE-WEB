@@ -10,13 +10,25 @@ type PathData = {
 const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
   const navigate = useNavigate();
 
-  const handleStatusClick = (status: string) => {
+  const handleStatusClick = (status: string, line: number) => {
     if (status === '추적') {
-      navigate('/operator/operationManagement/pathFind');
+      navigate('/operator/operationManagement/pathFind', {
+        state: { lineNM: line },
+      });
     } else {
-      navigate('/operator/operationManagement/pastPath');
+      navigate('/operator/operationManagement/pastPath', {
+        state: { lineNM: line },
+      });
     }
   };
+
+  const statusOrder: string[] = ['CREATED', 'OPERATING', 'OPERATED'];
+  //순서 정렬용
+
+  // 상태에 따른 정렬 운행전, 운행중, 운행종료 순서
+  pathData.sort((a, b) => {
+    return statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status);
+  });
 
   const statusToTextStatusMap: { [key: string]: string } = {
     CREATED: '운행전',
@@ -27,7 +39,7 @@ const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
   const statusToDetailMap: { [key: string]: string } = {
     CREATED: '추적',
     OPERATING: '추적',
-    OPERATED: '상세 정보',
+    OPERATED: '이력',
   };
 
   return (
@@ -80,7 +92,7 @@ const PathListTable = ({ pathData }: { pathData: PathData[] }) => {
                 <td
                   className="py-3 px-4 text-grayscale-lighter underline cursor-pointer"
                   onClick={() =>
-                    handleStatusClick(statusToDetailMap[item.status])
+                    handleStatusClick(statusToDetailMap[item.status], item.line)
                   }
                 >
                   {statusToDetailMap[item.status]}

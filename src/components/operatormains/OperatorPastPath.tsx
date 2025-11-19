@@ -1,98 +1,119 @@
+import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import { useLocation } from 'react-router-dom';
 import MiniTextContainer from '../containers/MiniTextContainer';
 import MiniTextsLayOut from '../../layouts/MiniTextsLayOut';
 import PathInfo from './PathInfo';
 import StaticMap from './StaticMap';
+import { getOperatorHistory } from '../../api/operatorApi';
+import { pointedLocation } from '../../atoms/operatorAtoms';
+
+// 상태 데이터 인터페이스
+export interface StatusData {
+  todayCount: number;
+  pathCount: number;
+  finished: number;
+}
+
+//정류장 타입
+export interface StopData {
+  id: number;
+  name: string;
+  time: string;
+  status: string;
+  latlng: { lat: number; lng: number };
+}
 
 const OperatorPastPath = () => {
-  const inputData = {
-    todayDrive: 7,
-    todayBusCount: 88,
-    todayPassenger: 88,
-  };
+  const { state } = useLocation();
 
-  //status에 지남 현재 추가
-  const stop: {
-    id: number;
-    name: string;
-    time: string;
-    status: '출발' | '예정' | '종점' | '지남' | '현재' | '종료';
-    latlng: { lat: number; lng: number };
-  }[] = [
-    {
-      id: 1,
-      name: '송풍저수지',
-      time: '14:05',
-      status: '종료',
-      latlng: { lat: 33.450705, lng: 126.570677 },
-    },
-    {
-      id: 2,
-      name: '방화마을회관',
-      time: '14:13',
-      status: '종료',
-      latlng: { lat: 33.450936, lng: 126.569477 },
-    },
-    {
-      id: 3,
-      name: '새마을회관',
-      time: '14:18',
-      status: '종료',
-      latlng: { lat: 33.450879, lng: 126.56994 },
-    },
-    {
-      id: 4,
-      name: '송풍초등학교',
-      time: '14:25',
-      status: '종료',
-      latlng: { lat: 33.451393, lng: 126.570738 },
-    },
-    {
-      id: 5,
-      name: '송풍리',
-      time: '14:30',
-      status: '종료',
-      latlng: { lat: 33.452344169439975, lng: 126.56878163224233 },
-    },
-    {
-      id: 6,
-      name: '송풍삼거리',
-      time: '14:35',
-      status: '종료',
-      latlng: { lat: 33.452739313807456, lng: 126.5709308145358 },
-    },
-    {
-      id: 7,
-      name: '송풍약수터',
-      time: '14:40',
-      status: '종료',
-      latlng: { lat: 33.45178067090639, lng: 126.572688693875 },
-    },
-  ];
+  const [, setPointed] = useAtom(pointedLocation);
 
-  const positions = stop.map(s => ({
-    title: s.name,
-    latlng: s.latlng,
-  }));
+  const [statusData, setStatusData] = useState<StatusData>({
+    todayCount: 0,
+    pathCount: 0,
+    finished: 0,
+  });
+
+  const [stopsData, setStopsData] = useState<StopData[]>([]);
+
+  const [positions, setPositions] = useState<
+    { title: string; latlng: { lat: number; lng: number } }[]
+  >([]);
+
+  const [path, setPath] = useState<{ lat: number; lng: number }[]>([]);
+
+  useEffect(() => {
+    // 여기에 API 호출을 추가하여 실제 데이터를 가져올 수 있습니다.
+    getOperatorHistory(state.lineNM, 1)
+      .then(response => {
+        setStatusData({
+          todayCount: response.data.result.info.operationCount,
+          pathCount: response.data.result.info.busUsage.operateCount,
+          finished: response.data.result.info.busUsage.completedCount,
+        });
+        setStopsData(
+          response.data.result.items.map((item, index) => ({
+            id: index + 1,
+            name: item.station,
+            time: item.time,
+            status: item.tag,
+            latlng: {
+              lat: item.geoPoint.lon,
+              lng: item.geoPoint.lat,
+            },
+          }))
+        );
+        setPositions(
+          response.data.result.items.map(item => ({
+            title: item.station,
+            latlng: {
+              lat: item.geoPoint.lon,
+              lng: item.geoPoint.lat,
+            },
+          }))
+        );
+        setPath(
+          response.data.result.points.map(point => ({
+            lat: point.lon,
+            lng: point.lat,
+          }))
+        );
+        setPointed({
+          lat: response.data.result.items[0].geoPoint.lon,
+          lng: response.data.result.items[0].geoPoint.lat,
+        });
+      })
+      .catch(error => {
+        console.error('운수사 운행 이력 조회 실패:', error);
+      });
+  }, [state.lineNM, setPointed]);
+
+  console.log(stopsData);
 
   return (
     <div className="w-full h-full flex flex-col gap-3 min-h-0">
       <MiniTextsLayOut>
         <MiniTextContainer
           name="오늘 운행"
-          value={inputData.todayDrive + ' 건'}
+          value={statusData.todayCount + ' 건'}
         />
         <MiniTextContainer
           name="배차 건수"
-          value={inputData.todayBusCount + ' 건'}
+          value={statusData.pathCount + ' 건'}
         />
         <MiniTextContainer
           name="탑승 완료"
-          value={inputData.todayPassenger + ' 건'}
+          value={statusData.finished + ' 건'}
         />
       </MiniTextsLayOut>
       <div className="flex-1 min-h-0 flex gap-6">
-        <PathInfo line="106번" driver="배상명" stops={stop} />
-        <StaticMap data={positions} />
+        <PathInfo
+          line={state.lineNM + '번'}
+          driver="배상명"
+          stops={stopsData}
+        />
+        <StaticMap station={positions} path={path} />
       </div>
     </div>
   );
