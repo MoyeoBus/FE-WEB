@@ -6,7 +6,7 @@ interface Stop {
   id: number;
   name: string;
   time: string;
-  status: '출발' | '예정' | '종점' | '지남' | '현재' | '종료';
+  status: string;
   latlng: { lat: number; lng: number };
 }
 
@@ -20,20 +20,26 @@ interface BusRouteCardProps {
 const PathInfo = ({ line, driver, stops }: BusRouteCardProps) => {
   const [selectedStopId, setSelectedStopId] = useState<number | null>(null);
 
-  const [, setPointed] = useAtom(pointedLocation);
+  const [point, setPointed] = useAtom(pointedLocation);
 
-  // 초기 현재 정류장 설정
+  // 초기 selectedStopId: point의 좌표가 stops 중 하나와 같으면 해당 정류장을 선택
   useEffect(() => {
-    const currentStop = stops.find(stop => stop.status === '현재');
-    if (currentStop && selectedStopId === null) {
-      setSelectedStopId(currentStop.id);
-      setPointed({ lat: currentStop.latlng.lat, lng: currentStop.latlng.lng });
-    } else if (!currentStop && stops.length > 0 && selectedStopId === null) {
-      // '현재' 상태의 정류장이 없으면 첫 번째 정류장으로 설정
-      setSelectedStopId(stops[0].id);
-      setPointed({ lat: stops[0].latlng.lat, lng: stops[0].latlng.lng });
+    if (
+      selectedStopId == null &&
+      point &&
+      point.lat != null &&
+      point.lng != null
+    ) {
+      const matched = stops.find(
+        s =>
+          s.latlng && s.latlng.lat === point.lat && s.latlng.lng === point.lng
+      );
+      if (matched) {
+        setSelectedStopId(matched.id);
+      }
     }
-  }, [stops, selectedStopId, setPointed]);
+    // only run when stops or point change
+  }, [stops, point, selectedStopId]);
 
   return (
     <div className="w-60 h-full bg-white rounded-xl border border-gray-200  flex flex-col min-h-0">

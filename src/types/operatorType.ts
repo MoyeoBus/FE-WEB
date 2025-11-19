@@ -55,3 +55,43 @@ export interface OperatorStatusResult {
   };
   history: OperatorHistoryItem[];
 }
+
+//운수사 운행 이력 조회
+export interface OperatorItem {
+  station: string;
+  geoPoint: {
+    lat: number;
+    lon: number;
+  };
+  time: string;
+  tag: string;
+}
+
+export interface OperatorHistoryResult {
+  info: {
+    operationCount: number;
+    busUsage: {
+      operateCount: number;
+      completedCount: number;
+    };
+  };
+  history: OperatorHistoryItem[];
+  items: OperatorItem[];
+  points: { lat: number; lon: number }[];
+}
+
+//운수사 운행 추적 조회
+export interface OperatorTrackingResult {
+  info: {
+    routeId: number;
+    nextStation: string;
+    nextStationPoint: {
+      lat: number;
+      lon: number;
+    };
+    gapTime: number;
+    remainDistance: number;
+  };
+  items: OperatorItem[];
+  points: { lat: number; lon: number }[];
+}

@@ -11,23 +11,24 @@ type StaticMapProps = {
 };
 
 interface StaticMapComponentProps {
-  data: StaticMapProps[];
+  station: StaticMapProps[];
+  path: { lat: number; lng: number }[];
 }
 
-const StaticMap = ({ data }: StaticMapComponentProps) => {
+const StaticMap = ({ station, path }: StaticMapComponentProps) => {
   useKakaoLoader();
 
   const [pointed] = useAtom(pointedLocation);
 
-  const positions = data;
+  const positions = station;
 
   return (
     <Map // 지도를 표시할 Container
       id="map"
       center={{
         // 지도의 중심좌표
-        lat: pointed.lat != null ? pointed.lat : 0,
-        lng: pointed.lng != null ? pointed.lng : 0,
+        lat: pointed.lat != null ? pointed.lat : 1,
+        lng: pointed.lng != null ? pointed.lng : 1,
       }}
       style={{
         // 지도의 크기
@@ -39,23 +40,17 @@ const StaticMap = ({ data }: StaticMapComponentProps) => {
       level={6} // 지도의 확대 레벨
     >
       <Polyline
-        path={[
-          [
-            { lat: 33.452344169439975, lng: 126.56878163224233 },
-            { lat: 33.452739313807456, lng: 126.5709308145358 },
-            { lat: 33.45178067090639, lng: 126.572688693875 },
-          ],
-        ]}
+        path={path}
         strokeWeight={6} // 선의 두께 입니다
         strokeColor={'#FD7E14'} // 선의 색깔입니다
         strokeOpacity={1} // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
         strokeStyle={'solid'} // 선의 스타일입니다
       />
-      {positions.map((position, index) => (
+      {positions.map((station, index) => (
         <MapMarker
           key={index}
-          position={position.latlng}
-          title={position.title}
+          position={station.latlng}
+          title={station.title}
           image={{
             src: busImage,
             size: {

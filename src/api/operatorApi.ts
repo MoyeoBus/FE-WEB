@@ -5,6 +5,8 @@ import type {
   TopBusStopResult,
   RouteDistanceResult,
   OperatorStatusResult,
+  OperatorHistoryResult,
+  OperatorTrackingResult,
 } from '../types/operatorType';
 
 //지역 기반 요청 랭킹 top 5 조회
@@ -32,5 +34,19 @@ export const getRouteDistances = (operatorId: number) => {
 export const getOperatorStatus = (operatorId: number) => {
   return baseAxiosInstance.get<ApiResponse<OperatorStatusResult>>(
     `/api/v1/transports/${operatorId}/operate`
+  );
+};
+
+//운수사 운행 이력 조회
+export const getOperatorHistory = (routeId: number, operatorId: number) => {
+  return baseAxiosInstance.get<ApiResponse<OperatorHistoryResult>>(
+    `/api/v1/transports/${routeId}/track?operatorId=${operatorId}`
+  );
+};
+
+//운수사 운행 추적 조회
+export const getOperatorTracking = (routeId: number) => {
+  return baseAxiosInstance.get<ApiResponse<OperatorTrackingResult>>(
+    `/api/v1/transports/${routeId}/track`
   );
 };
