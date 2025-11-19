@@ -13,7 +13,7 @@ const DownLoadBtn = ({ name }: DownLoadBtnProps) => {
 
   //XLSX 다운로드 함수
   const downloadXLSX = () => {
-    const worksheet = XLSX.utils.json_to_sheet(busData);
+    const worksheet = XLSX.utils.json_to_sheet(busData || []);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Bus Data');
     const excelBuffer = XLSX.write(workbook, {
