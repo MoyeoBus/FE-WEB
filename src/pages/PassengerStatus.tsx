@@ -99,7 +99,7 @@ const PassengerStatus = () => {
                 passengerData?.items.map(item => ({
                   name: item.sigunguName,
                   count: item.count,
-                  ratio: item.ratio,
+                  ratio: item.ratio + '%',
                 })) || []
               }
             />
